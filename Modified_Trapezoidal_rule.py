@@ -16,12 +16,18 @@ def Trapezoidal(xi, xf, n, f):
     
 #Function defination
 def f(x):
-	return x*x
+	return np.sin(x)
 	
 #The abs. error btw present and older integration value:
 tolerance = float(input("Enter the tolerace "))
 	
 n = 2
-while abs(Trapezoidal(-1, 1, n, f) - Trapezoidal(-1, 1, n+1, f)) > tolerance:
+a = 0
+b = np.pi
+
+#
+while abs(Trapezoidal(a, b, n, f) - Trapezoidal(a, b, n+1, f)) > tolerance:
+	
+	e = abs(Trapezoidal(a, b, n, f) - Trapezoidal(a, b, n+1, f))
+	print(f"{Trapezoidal(a, b, n, f):.5f}\t {e:.3f}\t {n-1}")
 	n += 1
-	print(f"The integral is {Trapezoidal(-1, 1, n, f):.5f} for the number of interval", n-1)
